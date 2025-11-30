@@ -14,7 +14,167 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          status: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          status?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      quotes: {
+        Row: {
+          company_name: string | null
+          contact_name: string
+          created_at: string
+          delivery_date: string | null
+          destination: string
+          email: string
+          estimated_cost: number | null
+          height: number | null
+          id: string
+          length: number | null
+          notes: string | null
+          origin: string
+          phone: string
+          pickup_date: string | null
+          service_type: string
+          special_requirements: string[] | null
+          status: string
+          weight: number
+          width: number | null
+        }
+        Insert: {
+          company_name?: string | null
+          contact_name: string
+          created_at?: string
+          delivery_date?: string | null
+          destination: string
+          email: string
+          estimated_cost?: number | null
+          height?: number | null
+          id?: string
+          length?: number | null
+          notes?: string | null
+          origin: string
+          phone: string
+          pickup_date?: string | null
+          service_type: string
+          special_requirements?: string[] | null
+          status?: string
+          weight: number
+          width?: number | null
+        }
+        Update: {
+          company_name?: string | null
+          contact_name?: string
+          created_at?: string
+          delivery_date?: string | null
+          destination?: string
+          email?: string
+          estimated_cost?: number | null
+          height?: number | null
+          id?: string
+          length?: number | null
+          notes?: string | null
+          origin?: string
+          phone?: string
+          pickup_date?: string | null
+          service_type?: string
+          special_requirements?: string[] | null
+          status?: string
+          weight?: number
+          width?: number | null
+        }
+        Relationships: []
+      }
+      shipments: {
+        Row: {
+          created_at: string
+          current_location: string | null
+          customer_email: string
+          customer_phone: string | null
+          destination: string
+          estimated_delivery: string | null
+          id: string
+          origin: string
+          quote_id: string | null
+          service_type: string
+          status: string
+          timeline: Json | null
+          tracking_number: string
+          updated_at: string
+          weight: number
+        }
+        Insert: {
+          created_at?: string
+          current_location?: string | null
+          customer_email: string
+          customer_phone?: string | null
+          destination: string
+          estimated_delivery?: string | null
+          id?: string
+          origin: string
+          quote_id?: string | null
+          service_type: string
+          status?: string
+          timeline?: Json | null
+          tracking_number: string
+          updated_at?: string
+          weight: number
+        }
+        Update: {
+          created_at?: string
+          current_location?: string | null
+          customer_email?: string
+          customer_phone?: string | null
+          destination?: string
+          estimated_delivery?: string | null
+          id?: string
+          origin?: string
+          quote_id?: string | null
+          service_type?: string
+          status?: string
+          timeline?: Json | null
+          tracking_number?: string
+          updated_at?: string
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shipments_quote_id_fkey"
+            columns: ["quote_id"]
+            isOneToOne: false
+            referencedRelation: "quotes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
